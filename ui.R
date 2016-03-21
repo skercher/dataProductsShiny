@@ -1,24 +1,20 @@
 library(shiny)
 
-# Define UI for application that draws a histogram
-shinyUI(fluidPage(
-
-  # Application title
-  titlePanel("Hello Shiny!"),
-
-  # Sidebar with a slider input for the number of bins
-  sidebarLayout(
-    sidebarPanel(
-      sliderInput("bins",
-                  "Number of bins:",
-                  min = 1,
-                  max = 50,
-                  value = 30)
-    ),
-
-    # Show a plot of the generated distribution
-    mainPanel(
-      plotOutput("distPlot")
+shinyUI(
+    pageWithSidebar(
+        # Price of Diamonds per Carat prediction
+        headerPanel("Convert MPH to Kilometers"),
+        
+        sidebarPanel(
+            numericInput('mph', 'Enter MPH', 1 , min = 1, max = 1000, step = 1),
+            submitButton('Submit')
+        ),
+        mainPanel(
+            h3('Results of the conversion'),
+            h4('You entered the following MPH'),
+            verbatimTextOutput("inputValue"),
+            h4('Calculated in Kilometers'),
+            verbatimTextOutput("prediction")
+        )
     )
-  )
-))
+)
